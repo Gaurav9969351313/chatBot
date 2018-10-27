@@ -1,0 +1,15 @@
+
+
+<button name="btnActivateSpeechSearchMovie" 
+        id="btnActivateSpeechSearchMovie" 
+        (click)="activateSpeechSearchMovie()"
+        [disabled]="!showSearchButton"> MicroPhone
+</button>
+
+<input type="text" 
+       name="txtSpeechSearchMovieName" 
+       id="txtSpeechSearchMovieName"  
+       [(ngModel)]="speechData">
+
+
+<button class="bottom-right" (click)="navigateToLogin()">Bot here</button>
