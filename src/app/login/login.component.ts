@@ -1,54 +1,42 @@
-import { Component, OnInit, Output, EventEmitter,ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { environment } from '../../environments/environment';
 import { HttpService } from "../shared/http.service";
-import { Router } from "@angular/router";
-
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-
 export class LoginComponent implements OnInit {
 
-  userModel: any = {};
+  landingLinksAll = [];
+  landingLinks = []; //container
+  viewMoreFlag: boolean = false;
 
-  isUserAuthenticated: boolean = false;
-
-  constructor(private httpService: HttpService, private route: Router) { }
+  constructor(private httpService:HttpService) { }
 
   ngOnInit() {
+    var keys = Object.keys(environment.landingPageLinks);
+
+    for (let i = 0; i < keys.length; i++) {
+      const name = environment.landingPageLinks[keys[i]].name;
+      this.landingLinksAll.push({ name: name, key: keys[i] });
+    }
+    this.landingLinks = this.landingLinksAll.slice(0, 3);
   }
 
-  @Output() onLogin = new EventEmitter<boolean>();
+  
 
-  showConversation(isUserAuthenticatedBE: boolean) {
-    console.log(isUserAuthenticatedBE);
-    this.isUserAuthenticated = isUserAuthenticatedBE;
-    this.onLogin.emit(isUserAuthenticatedBE);
+  clickedLangingLink(name, key) {
+    console.log("this landing page link is been clicked " + name + ' ' + key);
   }
 
-  login() {
-    var objCreads = {};
-
-    objCreads["strUserName"] = this.userModel.username;
-    objCreads["strUserPassword"] = this.userModel.password;
-
-    console.log(objCreads);
-
-    this.fn_loginResponse({});
-
-    // this.httpService.post("", objCreads).subscribe((authData: any) => {
-    //   console.log(authData);
-    //   this.fn_loginResponse(authData);
-    // });
-  }
-
-  fn_loginResponse(loginResponse: any) {
-
-    localStorage.setItem("currentUser",'{"name":"Gaurav","token":"gauravtalele1102"}');
-    if (true) //status true
-      this.showConversation(true);
-    //this.route.navigate(['/conversation']);
+  viewMoreToggler() {
+    this.viewMoreFlag = !this.viewMoreFlag;
+    if (this.viewMoreFlag) {
+      this.landingLinks = this.landingLinksAll;
+    } else {
+      this.landingLinks = this.landingLinksAll.slice(0, 3);
+    }
   }
 }

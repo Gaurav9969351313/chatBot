@@ -1,41 +1,60 @@
-<div class="container">
-        <div class="card card-container">
-            <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-            <p id="profile-name" class="profile-name-card"></p>
+<div class="bot-bg-box"></div>
 
-              <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="Submit()">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                        <div *ngIf="f.username.errors.required">Username is required</div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                        <div *ngIf="f.password.errors.required">Password is required</div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-lg btn-primary btn-block btn-signin" [disabled]="loading" class="btn btn-primary">Login</button>
-                    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                    <a [routerLink]="['/register']" class="btn btn-link">Register</a>
-                </div>
-            </form>
-
-            <a href="#" class="forgot-password">
-                Forgot the password?
-            </a>
-
-        </div>
+<div class="chat-icon">
+    <div class="chat-icon-inner-box">
+        <img src="assets/images/UnripeAdoredGrayreefshark.gif" />
+    </div>
 </div>
 
-
-<div class="container">
-        <div class="card card-container">
-
+<div class="chat-window opened">
+    <div class="upper-div text-center">
+        <div class="gif-box">
+            <img src="assets/images/UnripeAdoredGrayreefshark.gif" />
         </div>
-</div>
+        <img src="assets/images/close-icon.png" class="close-btn" />
+    </div>
 
+    <div class=chat-outer-wrapper>
+        <div class=chat-wrapper>
+            <div class="chats-content-login-container">
+
+                    <div class="login-container" style="vertical-align: center !important;">
+							<div class="login_text">LOGIN</div>
+							<br>
+							<form id="login_form" name="login_form" autocomplete="off">
+								<div class="form-group">
+									<input class="form-control username2" focus="" id="username2" autocapitalize="none" type="text" name="username2" placeholder="UserID" ng-model="uname" required="" autocomplete="off" style="">
+									<input class="form-control username" focus="" id="username" style="display:none;" autocapitalize="none" type="text" name="username" placeholder="UserID" autocomplete="off">
+								
+									<input class="form-control userpassword2" focus="" type="password" autocapitalize="none" name="userpassword2" id="userpassword2" placeholder="Password" ng-model="upwd" required="" autocomplete="off" style="">
+									<input class="form-control userpassword" focus="" type="password" style="display:none;" autocapitalize="none" name="userpassword" id="userpassword" placeholder="Password" autocomplete="off">
+									
+									<label>
+										<input ng-click="rememberMe(uname,upwd)" class="rememberme" type="checkbox"> Remember Me
+									</label>
+									<input class="form-control" type="submit" (click)="login()"><!-- end ngIf: !loginpress -->
+								</div>
+							</form>
+						</div>
+                <!-- <div id="loader" class="rply-msg-box typing-gif-box" style="width:auto; padding:0;position: absolute;bottom: 60px;">
+                    <div class="">
+                        <img src="assets/images/typing-gif.gif" />
+                    </div>
+                </div>
+                <div class="blackdrop-layer"></div>
+                <div class="amodal-box">
+                    <div class="amodal-header">
+                        <p>Error description</p>
+                    </div>
+                    <div class="amodal-body">
+                        <textarea id="textVal" rows="3" placeholder="message"></textarea>
+                    </div>
+                    <div class="amodal-footer">
+                        <button id="ok" class="btn primary-btn pull-right">Ok</button>
+                        <div class="clearfix"></div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

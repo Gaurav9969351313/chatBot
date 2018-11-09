@@ -1,15 +1,7 @@
 
 
-<button name="btnActivateSpeechSearchMovie" 
-        id="btnActivateSpeechSearchMovie" 
-        (click)="activateSpeechSearchMovie()"
-        [disabled]="!showSearchButton"> MicroPhone
-</button>
-
-<input type="text" 
-       name="txtSpeechSearchMovieName" 
-       id="txtSpeechSearchMovieName"  
-       [(ngModel)]="speechData">
+<!-- <h1>Shree Swami Samartha</h1> -->
+<router-outlet></router-outlet>
 
 
-<button class="bottom-right" (click)="navigateToLogin()">Bot here</button>
+<button class="bottom-right" (click)="navToConversation()">Bot Here...!!!</button>

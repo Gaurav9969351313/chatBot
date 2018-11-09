@@ -1,44 +1,122 @@
+<!--   
+
+  <div class="login-container-wrapper" style="vertical-align: center !important;">
+    <div class="login_text">LOGIN</div>
+    <br>
+    <form id="login_form" name="login_form" autocomplete="off">
+      <div class="form-group">
+        <input class="form-control username2" focus="" id="username2" autocapitalize="none" type="text" name="username2" placeholder="UserID"
+           autocomplete="off">
+        <input class="form-control username" focus="" id="username" style="display:none;" autocapitalize="none" type="text" name="username"
+          placeholder="UserID" autocomplete="off">
+
+        <input class="form-control userpassword2" focus="" type="password" autocapitalize="none" name="userpassword2" id="userpassword2"
+          placeholder="Password"  required="" autocomplete="off">
+        <input class="form-control userpassword" focus="" type="password" style="display:none;" autocapitalize="none" name="userpassword"
+          id="userpassword" placeholder="Password" autocomplete="off">
+
+        <label>
+          <input (click)="rememberMe()" class="rememberme" type="checkbox"> Remember Me
+        </label>
+
+        <input class="form-control" type="submit" (click)="login()">
+
+      </div>
+    </form>
+  </div> -->
+
+<ul class="chat chatmsgs col-md-12 ">
+  
+  <li class="left lastchat clearfix" ng-repeat="list in chatlist track by $index" ng-init="$rowindex = $index">
+    <span class="chat-img pull-left">
+      <img ng-src="assets/images/M_logo.PNG" alt="BOT" class="img-circle  doneLoading" src="assets/images/M_logo.PNG">
+
+    </span>
+    <div class="chat-body">
+      <div class="" ng-if="list.position==='left' ">
+
+        <div class="sysChatRes">
+
+        </div>
+      </div>
+
+      <div class="clearfix " ng-if="(list.position==='left' &amp;&amp;  (list.msg.type==='SYS_INACTIVE' || list.msg.type==='SYS_FIRST' || list.msg.type==='SYS_EMPTY_RES'))">
+        <p class="lastmsg ng-binding">
+          Hi manevik-cont, How may I help you ?
+        </p>
+      </div>
+
+      <p class="lastmsg">
+        <small class="chatTime ng-binding">
+          <span class="glyphicon glyphicon-time">
+          </span>
+          20:38:50 PM
+        </small>
+      </p>
+    </div>
+  </li>
 
 
+  <!-- Landing Page -->
+  <li class="left lastchat clearfix">
+    <span class="chat-img pull-left">
+      <img ng-src="assets/images/M_logo.PNG" alt="BOT" class="img-circle  doneLoading" src="assets/images/M_logo.PNG">
+    </span>
 
-<div class="container">
-        <div class="card card-container">
-            <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-            <p id="profile-name" class="profile-name-card"></p>
+    <div class="chat-body">
+      <div class="" ng-if="list.position==='left' ">
+        <div class="sysChatRes">
+        </div>
+      </div>
 
-            <form  class="form-signin"  name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
-              <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" name="username" [(ngModel)]="userModel.username" #username="ngModel"
-                  required />
-                <div *ngIf="f.submitted && !username.valid" class="help-block">* Username is required</div>
-              </div>
-              <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-                <label for="password">Password</label>
-                <input  type="password" class="form-control" name="password" [(ngModel)]="userModel.password" #password="ngModel"
-                  required />
-                <div *ngIf="f.submitted && !password.valid" class="help-block">* Password is required</div>
-              </div>
-              <div class="form-group" >
-                <button [disabled]="loading" class="btn btn-primary">Login</button>
-               <!-- style="display:inline-flex;" style="width:45%;margin: 5px;"  <button (click)="toggleShow($event)" [value]="isHidden ? 'Show password' : 'Hide password'" style="width:60%;margin: 5px;" class="btn btn-primary">Show Password</button> -->
-              </div>
-            </form>
+      <div class="clearfix " ng-if="(list.position==='left' &amp;&amp;  (list.msg.type==='SYS_QUES'))">
+        <h4 class="s_query">What's on your mind today?</h4>
 
-            <a href="#" class="forgot-password">
-                Forgot the password?
+
+        <div class="quess" *ngFor="let lnadlink of landingLinks">
+          <p class="faq_ques">
+            <a (click)="clickedLangingLink(lnadlink.key, lnadlink.name)" class="ng-binding">
+              {{ lnadlink?.name }}
             </a>
-
-            
-
+          </p>
         </div>
-</div>
 
-<!--
-<div class="container">
-        <div class="card card-container">
-
+        <div class="text-center">
+          <button type="button" class="btn btn-xs btn-info faqtoggle ng-binding" (click)="viewMoreToggler()"> {{ viewMoreFlag ? 'View Less' : 'View More' }} </button>
         </div>
-</div>
+      </div>
 
--->
+      <p class="lastmsg">
+        <small class="chatTime ng-binding">
+          <span class="glyphicon glyphicon-time">
+          </span>
+          20:38:50 PM
+        </small>
+      </p>
+    </div>
+  </li>
+
+  <!-- Message Sent By User -->
+  <li class="right lastchat clearfix" ng-repeat="list in chatlist track by $index" ng-init="$rowindex = $index" style="">
+    <span class="chat-img pull-right">
+      <img ng-src="assets/images/logo7.png" alt="BOT" class="img-circle  doneLoading" src="assets/images/logo7.png">
+
+    </span>
+    <div class="chat-body">
+      <div class="clearfix ng-scope" ng-if="list.position==='right'">
+        <p class="lastmsg ng-binding">
+          Head Count
+        </p>
+      </div>
+
+      <p class="lastmsg">
+        <small class="chatTime ng-binding">
+          <span class="glyphicon glyphicon-time">
+          </span>
+          00:17:25 AM
+        </small>
+      </p>
+    </div>
+  </li>
+
+</ul>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -7,13 +8,18 @@ import { Router } from "@angular/router";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private route: Router) { }
+  showChatBotWrapper:boolean = false;
+
+  constructor(private router:Router) { }
 
   ngOnInit() {
   }
 
-  navToConversation() {
-    this.route.navigate(['/conversation']);
+  navigateToChatBotWrapper() {
+     this.showChatBotWrapper = true;
   }
 
+  CloseChatBotWrapper() {
+    this.showChatBotWrapper = false;
+  }
 }

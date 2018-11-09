@@ -1,34 +1,29 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HttpModule } from "@angular/http";
-import { ReactiveFormsModule }    from '@angular/forms';
-import { FormsModule } from "@angular/forms";
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from "@angular/router";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import { SpeechService } from "./speech.service";
-import { HttpService } from "./http.service";
-
-import { AuthGuard } from "./auth.guard";
-
 import { LoginComponent } from './login/login.component';
 import { ConversationComponent } from './conversation/conversation.component';
-import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ConversationComponent,
-    HomeComponent
+    ConversationComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, HttpModule, ReactiveFormsModule,FormsModule
+    AppRoutingModule,
+    HttpModule,
+    FormsModule,
+    RouterModule
   ],
-  providers: [AuthGuard,HttpService,SpeechService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

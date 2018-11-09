@@ -1,5 +1,21 @@
-<!-- <app-login></app-login> -->
 
-<button class="bottom-right" (click)="navToConversation()">Bot Here...!!!</button>
+    <div class="chat-icon-inner-box" (click)="navigateToChatBotWrapper()">
+      <img src="assets/images/UnripeAdoredGrayreefshark.gif">
+    </div>
 
-  
+    <div *ngIf="showChatBotWrapper">
+        <div class="chat-window opened">
+            <div class="upper-div text-center">
+                <div class="gif-box">
+                    <img src="assets/images/UnripeAdoredGrayreefshark.gif" />
+                </div>
+                <img src="assets/images/close-icon.png" (click)="CloseChatBotWrapper()" class="close-btn" />
+            </div>
+        
+            <div class=chat-outer-wrapper>
+                <div class=chat-wrapper>
+                    <app-login></app-login>
+                </div>  
+            </div>  
+        </div>
+    </div>

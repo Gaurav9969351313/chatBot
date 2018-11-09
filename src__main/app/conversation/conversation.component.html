@@ -1,0 +1,137 @@
+<div id="frame">
+  <div class="content">
+    <div class="contact-profile">
+      <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+      <p>Mahindra & Mahindra</p>
+      <div class="social-media">
+        <i class="fa fa-facebook" aria-hidden="true"></i>
+        <i class="fa fa-twitter" aria-hidden="true"></i>
+        <i class="fa fa-instagram" aria-hidden="true" (click)="clearChat()"></i>
+      </div>
+    </div>
+   
+    <div #scrollMe class="w100 messages">
+      <ul>
+       
+        <div *ngFor="let conv of arrDummyConversation">
+
+          <!-- <div [innerHtml]="conv.text | safehtml">
+          </div>  -->
+
+           <li *ngIf="conv.type ==='cardWithIframeAndButtons'">
+  
+            <div style="background: #435f7a;    margin-bottom: 12px;" class="container">
+                <div class="card card-container">
+                  <div style="height:auto;" class="form-check">
+
+                    <div class="card-header">
+                      {{cardHeader}}
+                    </div>
+
+                    <div style="background: white;height:300px;" class="card-body">
+                        <iframe style="background: white;"  width="100%" height="300px" [src]="conv.url | safebrowse"></iframe>
+                    </div>
+
+                    <div class="card-footer">
+                        
+                            <div style="display:inline-block;border: 1px solid #435f7a;" class="listbtn3 listbtns listbtn1" *ngFor="let btn of conv?.btnsData">
+                                <div (click)="btnClicked(btn)" >{{btn}}</div>
+                            </div>
+                            
+                    </div>
+
+                  </div>
+              </div>
+            </div>
+          </li>
+
+          <li *ngIf="conv.type==='s'" class="sent">
+            <p>{{conv.text}}</p>
+          </li>
+
+          <!-- Working Fine -->
+          <li *ngIf="conv.type==='landingCard'" class="sent">
+              <div style="background: #435f7a;    margin-bottom: 12px;" class="container">
+                  <div class="card card-container">
+                    
+                    <div style="height:auto;" class="form-check">
+
+                      <div class="card-header">
+                        What's on your mind today?
+                      </div>
+
+                      <div class="card-body">
+                            <ul style="list-style: none;">
+                                <li *ngFor="let intentLink of dictLandingPageLinksWithURLS" >
+                                  
+                                  <div (click)="getButtons(intentLink?.url)"> 
+                                      {{ intentLink?.name }} 
+                                  </div>
+                                 
+                                </li>
+                            </ul>
+                      </div>
+
+                    <!--
+                    <div class="card-footer">
+                        <button (click)="showMoreOrLessLandingPageLinks()">Show More</button>
+                    </div> 
+                    -->
+
+                </div>
+              </div>
+            </div>
+          </li>
+
+        <!-- 
+          <li *ngIf="conv.type==='cardWithIframeAndButtons'" class="sent">
+            <app-card [cardType]="'cardWithIframeAndButtons'" [cardData]="btnsData"></app-card>
+          </li>
+
+        -->
+         
+
+          <li *ngIf="conv.type==='r'" class="replies">
+            <p>{{conv.text}}</p>
+          </li>
+
+           <li *ngIf="conv.type==='iframe'" class="replies">
+            <iframe width="100%" height="500px" [src]="conv.url | safebrowse"></iframe>
+          </li>
+
+
+          <li *ngIf="conv.type==='rating'" class="replies">
+            <h4> {{ conv.text }} </h4>
+            <app-star [rating]='3' (ratingClick)='ratingComponentClick($event)'></app-star>
+          </li>
+
+        </div>
+      </ul>
+    </div>
+
+
+    <div class="message-input">
+      <div class="wrap">
+
+        <form name="form" (ngSubmit)="dialogForm.form.valid && sendMessageByUser()" #dialogForm="ngForm" novalidate>
+          <div class="form-group">
+            <input type="text" class="form-control" name="dialog" [(ngModel)]="messageDialogModel.dialog" #dialog="ngModel"
+              required />
+          </div>
+
+           <div class="form-check">
+              <button style="margin:5px" (click)="sendMessageByUser()" class="btn btn-info" type="button" name="showpassword" id="showpassword" value="Show Password">S</button> 
+              <button style="margin:5px"  name="btnActivateSpeechSearchMovie" 
+                id="btnActivateSpeechSearchMovie" 
+                (click)="activateSpeechSearchMovie()" type="submit" class="btn btn-primary">M</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
